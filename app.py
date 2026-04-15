@@ -32,12 +32,16 @@ st.markdown(
         :root {
             --bg: #ffffff;
             --card: #ffffff;
-            --text: #18212f;
+            --text: #16202d;
             --muted: #475569;
-            --border: #e6ebf2;
+            --border: #e5eaf1;
             --blue: #2f6fed;
-            --blue-soft: #5b8eff;
-            --blue-light: #9bb9ff;
+            --teal: #127c72;
+            --gold: #b7791f;
+            --slate: #6b7280;
+            --blue-soft: #7da4ff;
+            --teal-soft: #78c7bf;
+            --gold-soft: #e8c27a;
             --green: #1f9d61;
             --amber: #c98a14;
             --red: #cf3f3f;
@@ -48,81 +52,87 @@ st.markdown(
         }
 
         .block-container {
-            padding-top: 1.5rem;
-            padding-bottom: 2rem;
-            max-width: 1450px;
+            padding-top: 1.9rem;
+            padding-bottom: 2.4rem;
+            max-width: 1500px;
         }
 
         .hero {
             background: #ffffff;
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.3rem 1.4rem 1.15rem 1.4rem;
+            border-radius: 22px;
+            padding: 1.6rem 1.7rem 1.35rem 1.7rem;
             box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
-            margin-bottom: 1rem;
+            margin-bottom: 1.15rem;
         }
 
         .hero-title {
             color: var(--text);
-            font-size: 1.8rem;
+            font-size: 2.05rem;
             font-weight: 700;
-            margin-bottom: 0.2rem;
-            letter-spacing: -0.02em;
+            margin-bottom: 0.28rem;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
         }
 
         .hero-subtitle {
             color: var(--muted);
-            font-size: 0.98rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.06rem;
+            line-height: 1.55;
+            margin-bottom: 1rem;
+            max-width: 1000px;
         }
 
         .hero-meta {
             display: inline-block;
             color: var(--muted);
-            font-size: 0.85rem;
+            font-size: 0.92rem;
             background: #ffffff;
             border: 1px solid var(--border);
             border-radius: 999px;
-            padding: 0.35rem 0.65rem;
-            margin-right: 0.45rem;
+            padding: 0.42rem 0.72rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.35rem;
         }
 
         .card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 1rem 1.05rem 0.95rem 1.05rem;
+            border-radius: 20px;
+            padding: 1.2rem 1.25rem 1.15rem 1.25rem;
             box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
             height: 100%;
         }
 
         .kpi-label {
             color: var(--muted);
-            font-size: 0.9rem;
+            font-size: 0.98rem;
             font-weight: 600;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.45rem;
         }
 
         .kpi-value {
             color: var(--text);
-            font-size: 2rem;
+            font-size: 2.3rem;
             font-weight: 700;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.035em;
             line-height: 1;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.48rem;
         }
 
         .kpi-delta {
-            font-size: 0.88rem;
+            color: var(--muted);
+            font-size: 0.96rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.65rem;
+            line-height: 1.45;
         }
 
         .pill {
             display: inline-block;
-            padding: 0.25rem 0.55rem;
+            padding: 0.28rem 0.62rem;
             border-radius: 999px;
-            font-size: 0.76rem;
+            font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 0.01em;
             border: 1px solid transparent;
@@ -135,25 +145,27 @@ st.markdown(
 
         .section-title {
             color: var(--text);
-            font-size: 1.02rem;
+            font-size: 1.14rem;
             font-weight: 700;
-            margin-bottom: 0.45rem;
-            letter-spacing: -0.015em;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
         }
 
         .section-note {
             color: var(--muted);
-            font-size: 0.88rem;
-            line-height: 1.45;
+            font-size: 0.96rem;
+            line-height: 1.55;
             margin-top: 0;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.95rem;
         }
 
         .mini-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.55rem 0;
+            gap: 1rem;
+            padding: 0.72rem 0;
             border-bottom: 1px solid #eef2f7;
         }
 
@@ -163,18 +175,20 @@ st.markdown(
 
         .mini-label {
             color: var(--text);
-            font-size: 0.9rem;
+            font-size: 0.98rem;
             font-weight: 600;
+            line-height: 1.4;
         }
 
         .mini-sub {
             color: var(--muted);
-            font-size: 0.8rem;
-            margin-top: 0.15rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-top: 0.18rem;
         }
 
         .insight {
-            padding: 0.7rem 0 0.55rem 0;
+            padding: 0.82rem 0 0.68rem 0;
             border-bottom: 1px solid #eef2f7;
         }
 
@@ -183,18 +197,24 @@ st.markdown(
         .insight-title {
             color: var(--text);
             font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 0.2rem;
+            font-size: 0.98rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.4;
         }
 
         .insight-body {
             color: var(--muted);
-            font-size: 0.88rem;
-            line-height: 1.45;
+            font-size: 0.94rem;
+            line-height: 1.58;
         }
 
         div[data-testid="stProgressBar"] > div > div > div > div {
-            background: linear-gradient(90deg, #2f6fed 0%, #5b8eff 100%);
+            background: linear-gradient(90deg, #2f6fed 0%, #127c72 100%);
+        }
+
+        div[data-testid="stExpander"] details summary p {
+            font-size: 0.98rem;
+            font-weight: 600;
         }
     </style>
     """,
@@ -228,18 +248,20 @@ def chart_layout(fig):
     fig.update_layout(
         paper_bgcolor="#FFFFFF",
         plot_bgcolor="#FFFFFF",
-        margin=dict(l=16, r=16, t=44, b=16),
-        font=dict(color="#18212f", family="Arial", size=12),
-        title=dict(font=dict(size=16, color="#111827"), x=0, xanchor="left"),
+        margin=dict(l=22, r=22, t=56, b=22),
+        font=dict(color="#16202d", family="Arial", size=14),
+        title=dict(font=dict(size=18, color="#111827"), x=0, xanchor="left"),
         legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=1.08,
+            y=1.1,
             xanchor="left",
             x=0,
-            font=dict(size=11, color="#334155"),
-            title=None,
+            font=dict(size=12, color="#334155"),
+            title_text="",
+            itemsizing="constant",
         ),
+        hoverlabel=dict(font_size=13),
     )
 
     fig.update_xaxes(
@@ -248,8 +270,8 @@ def chart_layout(fig):
         gridwidth=1,
         zeroline=False,
         showline=False,
-        tickfont=dict(size=11, color="#334155"),
-        title_font=dict(size=12, color="#18212f"),
+        tickfont=dict(size=12, color="#334155"),
+        title_font=dict(size=13, color="#16202d"),
     )
 
     fig.update_yaxes(
@@ -258,8 +280,8 @@ def chart_layout(fig):
         gridwidth=1,
         zeroline=False,
         showline=False,
-        tickfont=dict(size=11, color="#334155"),
-        title_font=dict(size=12, color="#18212f"),
+        tickfont=dict(size=12, color="#334155"),
+        title_font=dict(size=13, color="#16202d"),
     )
     return fig
 
@@ -466,7 +488,7 @@ with st.expander("Dataset story", expanded=False):
     st.dataframe(raw_df.head(12), use_container_width=True, hide_index=True)
 
 # ---------- KPI Cards ----------
-kpi_cols = st.columns(4)
+kpi_cols = st.columns(4, gap="large")
 for col, (label, meta) in zip(kpi_cols, kpis.items()):
     with col:
         placeholder = st.empty()
@@ -484,7 +506,7 @@ for col, (label, meta) in zip(kpi_cols, kpis.items()):
                 <div class="card">
                     <div class="kpi-label">{label}</div>
                     <div class="kpi-value">{display_val}{meta['suffix']}</div>
-                    <div class="kpi-delta" style="color:#475569;">{meta['delta']}</div>
+                    <div class="kpi-delta">{meta['delta']}</div>
                     {pill_html(meta['status'], meta['tone'])}
                 </div>
                 """,
@@ -492,7 +514,7 @@ for col, (label, meta) in zip(kpi_cols, kpis.items()):
             )
             time.sleep(0.012)
 
-st.markdown("<div style='height: 0.55rem;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 0.75rem;'></div>", unsafe_allow_html=True)
 
 # ---------- Charts Row 1 ----------
 left, right = st.columns([1.45, 1], gap="large")
@@ -518,20 +540,15 @@ with left:
         markers=True,
         color_discrete_map={
             "Engagement Rate (%)": "#2f6fed",
-            "Completion Rate (%)": "#5b8eff",
-            "Certification Rate (%)": "#9bb9ff",
+            "Completion Rate (%)": "#127c72",
+            "Certification Rate (%)": "#b7791f",
         },
     )
     fig_line.update_traces(
         line=dict(width=3),
-        marker=dict(size=7, line=dict(width=1.5, color="#FFFFFF")),
+        marker=dict(size=8, line=dict(width=1.8, color="#FFFFFF")),
     )
-    fig_line.update_yaxes(
-        range=[20, 90],
-        ticksuffix="%",
-        tickmode="linear",
-        dtick=10,
-    )
+    fig_line.update_yaxes(range=[20, 90], ticksuffix="%", tickmode="linear", dtick=10)
     fig_line.update_xaxes(tickformat="%b", ticklabelmode="period")
     st.plotly_chart(chart_layout(fig_line), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
@@ -543,20 +560,28 @@ with right:
         '<div class="section-note">Representative curriculum view for leadership discussion.</div>',
         unsafe_allow_html=True,
     )
-    fig_bar = px.bar(curriculum_df, x="Completion", y="Curriculum", orientation="h", text="Completion")
+    fig_bar = px.bar(
+        curriculum_df,
+        x="Completion",
+        y="Curriculum",
+        orientation="h",
+        text="Completion",
+        color="Completion",
+        color_continuous_scale=["#cfd8e3", "#7da4ff", "#2f6fed"],
+    )
     fig_bar.update_traces(
-        marker_color="#2f6fed",
         texttemplate="%{text}%",
         textposition="outside",
         cliponaxis=False,
         hovertemplate="%{y}: %{x}%<extra></extra>",
     )
+    fig_bar.update_layout(coloraxis_showscale=False)
     fig_bar.update_xaxes(range=[0, 100], ticksuffix="%", tickmode="linear", dtick=20)
     fig_bar.update_yaxes(categoryorder="total ascending")
     st.plotly_chart(chart_layout(fig_bar), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
-st.markdown("<div style='height: 0.55rem;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 0.75rem;'></div>", unsafe_allow_html=True)
 
 # ---------- Charts Row 2 ----------
 col1, col2, col3 = st.columns([0.95, 1.05, 1.0], gap="large")
@@ -573,15 +598,21 @@ with col1:
         values="Learners",
         names="Partner Type",
         hole=0.66,
-        color_discrete_sequence=["#2f6fed", "#5b8eff", "#9bb9ff"],
+        color="Partner Type",
+        color_discrete_map={
+            "Reseller": "#2f6fed",
+            "Distributor": "#127c72",
+            "Strategic": "#b7791f",
+        },
     )
     fig_donut.update_traces(
         textinfo="percent",
-        textfont=dict(size=12, color="#18212f"),
-        marker=dict(line=dict(color="#FFFFFF", width=2)),
+        textfont=dict(size=13, color="#16202d"),
+        marker=dict(line=dict(color="#FFFFFF", width=2.2)),
         hovertemplate="%{label}: %{value:,} learners (%{percent})<extra></extra>",
+        sort=False,
     )
-    fig_donut.update_layout(showlegend=True)
+    fig_donut.update_layout(showlegend=True, legend_title_text="")
     st.plotly_chart(chart_layout(fig_donut), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -599,11 +630,12 @@ with col2:
             y=pipeline_df["Projects"],
             fill="tozeroy",
             mode="lines+markers",
-            line=dict(color="#2f6fed", width=3),
-            marker=dict(size=7, color="#2f6fed", line=dict(color="#FFFFFF", width=1.5)),
-            fillcolor="rgba(47, 111, 237, 0.12)",
+            line=dict(color="#127c72", width=3),
+            marker=dict(size=8, color="#127c72", line=dict(color="#FFFFFF", width=1.8)),
+            fillcolor="rgba(18, 124, 114, 0.14)",
             name="Projects",
             hovertemplate="%{x}: %{y} projects<extra></extra>",
+            showlegend=False,
         )
     )
     fig_area.update_yaxes(rangemode="tozero", dtick=2)
@@ -623,23 +655,23 @@ with col3:
         f"<div class='mini-sub'>{current_goal}% achieved against an {annual_goal}% year-end target.</div>",
         unsafe_allow_html=True,
     )
-    st.markdown("<div style='height:0.85rem;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:1rem;'></div>", unsafe_allow_html=True)
     st.markdown('<div class="mini-label">Program Launch Completion</div>', unsafe_allow_html=True)
     st.progress(program_launch / 100)
     st.markdown(
         f"<div class='mini-sub'>{program_launch}% of planned learning assets are launched or launch-ready.</div>",
         unsafe_allow_html=True,
     )
-    st.markdown("<div style='height:1rem;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:1.2rem;'></div>", unsafe_allow_html=True)
     st.markdown(pill_html("Leadership View", "blue"), unsafe_allow_html=True)
-    st.markdown("<div style='height:0.6rem;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:0.75rem;'></div>", unsafe_allow_html=True)
     st.markdown(
         "<div class='mini-sub'>The data reflects a healthy year-over-year build, with a temporary August disruption that leadership should treat as a governance signal rather than a structural performance problem.</div>",
         unsafe_allow_html=True,
     )
     st.markdown("</div>", unsafe_allow_html=True)
 
-st.markdown("<div style='height: 0.55rem;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 0.75rem;'></div>", unsafe_allow_html=True)
 
 # ---------- Bottom Row ----------
 left_bottom, middle_bottom, right_bottom = st.columns([1.1, 0.9, 1.0], gap="large")
@@ -699,7 +731,7 @@ with right_bottom:
             """,
             unsafe_allow_html=True,
         )
-    st.markdown("<div style='height:0.7rem;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:0.8rem;'></div>", unsafe_allow_html=True)
     st.markdown(pill_html("Recommended Actions", "blue"), unsafe_allow_html=True)
     for title, body in actions:
         st.markdown(
@@ -714,7 +746,7 @@ with right_bottom:
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------- Footer ----------
-st.markdown("<div style='height: 0.55rem;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 0.75rem;'></div>", unsafe_allow_html=True)
 st.caption(
     "Synthetic dataset wired into the dashboard from partner_enablement_dataset.csv. Replace the CSV later if you want to simulate a different business story."
 )
