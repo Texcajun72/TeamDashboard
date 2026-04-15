@@ -14,6 +14,27 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# --- Force clean white corporate background ---
+st.markdown("""
+    <style>
+        /* Main app background */
+        .stApp {
+            background-color: #FFFFFF;
+        }
+
+        /* Remove gray padding blocks */
+        section.main > div {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        /* Optional: cleaner font color */
+        body {
+            color: #1f2937;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # ---------- Styling ----------
 st.markdown(
     """
