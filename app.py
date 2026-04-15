@@ -16,10 +16,12 @@ st.set_page_config(
 
 DATA_FILE = Path(__file__).parent / "partner_enablement_dataset.csv"
 
+
 def load_data() -> pd.DataFrame:
     df = pd.read_csv(DATA_FILE)
     df["Month_dt"] = pd.to_datetime(df["Month"] + "-01")
     return df
+
 
 raw_df = load_data()
 
@@ -31,7 +33,7 @@ st.markdown(
             --bg: #ffffff;
             --card: #ffffff;
             --text: #18212f;
-            --muted: #5f6b7a;
+            --muted: #475569;
             --border: #e6ebf2;
             --blue: #2f6fed;
             --blue-soft: #5b8eff;
@@ -56,7 +58,7 @@ st.markdown(
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 1.3rem 1.4rem 1.15rem 1.4rem;
-            box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
             margin-bottom: 1rem;
         }
 
@@ -90,7 +92,7 @@ st.markdown(
             border: 1px solid var(--border);
             border-radius: 18px;
             padding: 1rem 1.05rem 0.95rem 1.05rem;
-            box-shadow: 0 8px 20px rgba(16, 24, 40, 0.035);
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
             height: 100%;
         }
 
@@ -133,17 +135,18 @@ st.markdown(
 
         .section-title {
             color: var(--text);
-            font-size: 1rem;
+            font-size: 1.02rem;
             font-weight: 700;
-            margin-bottom: 0.6rem;
-            letter-spacing: -0.01em;
+            margin-bottom: 0.45rem;
+            letter-spacing: -0.015em;
         }
 
         .section-note {
             color: var(--muted);
-            font-size: 0.86rem;
-            margin-top: -0.2rem;
-            margin-bottom: 0.6rem;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            margin-top: 0;
+            margin-bottom: 0.7rem;
         }
 
         .mini-row {
@@ -198,6 +201,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+
 # ---------- Helpers ----------
 def pill_html(text: str, tone: str) -> str:
     tone_class = {
@@ -209,6 +213,7 @@ def pill_html(text: str, tone: str) -> str:
     return f'<span class="pill {tone_class}">{text}</span>'
 
 
+
 def status_tone(status: str) -> str:
     return {
         "On Track": "green",
@@ -218,15 +223,46 @@ def status_tone(status: str) -> str:
     }.get(status, "blue")
 
 
+
 def chart_layout(fig):
     fig.update_layout(
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        margin=dict(l=10, r=10, t=20, b=10),
-        font=dict(color="#18212f", family="Arial"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        paper_bgcolor="#FFFFFF",
+        plot_bgcolor="#FFFFFF",
+        margin=dict(l=16, r=16, t=44, b=16),
+        font=dict(color="#18212f", family="Arial", size=12),
+        title=dict(font=dict(size=16, color="#111827"), x=0, xanchor="left"),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.08,
+            xanchor="left",
+            x=0,
+            font=dict(size=11, color="#334155"),
+            title=None,
+        ),
+    )
+
+    fig.update_xaxes(
+        showgrid=True,
+        gridcolor="#eef2f7",
+        gridwidth=1,
+        zeroline=False,
+        showline=False,
+        tickfont=dict(size=11, color="#334155"),
+        title_font=dict(size=12, color="#18212f"),
+    )
+
+    fig.update_yaxes(
+        showgrid=True,
+        gridcolor="#eef2f7",
+        gridwidth=1,
+        zeroline=False,
+        showline=False,
+        tickfont=dict(size=11, color="#334155"),
+        title_font=dict(size=12, color="#18212f"),
     )
     return fig
+
 
 
 def region_status(value: float, metric: str) -> str:
@@ -243,15 +279,18 @@ def region_status(value: float, metric: str) -> str:
         return "Watch"
     return "At Risk"
 
+
 # ---------- Derived Data ----------
-monthly = raw_df.groupby("Month_dt", as_index=False).agg({
-    "Engagement Rate (%)": "mean",
-    "Completion Rate (%)": "mean",
-    "Certification Rate (%)": "mean",
-    "CSAT (1-5)": "mean",
-    "Active Learners": "sum",
-    "Courses Launched": "sum",
-})
+monthly = raw_df.groupby("Month_dt", as_index=False).agg(
+    {
+        "Engagement Rate (%)": "mean",
+        "Completion Rate (%)": "mean",
+        "Certification Rate (%)": "mean",
+        "CSAT (1-5)": "mean",
+        "Active Learners": "sum",
+        "Courses Launched": "sum",
+    }
+)
 
 curriculum_df = pd.DataFrame(
     {
@@ -267,7 +306,9 @@ curriculum_df = pd.DataFrame(
     }
 ).sort_values("Completion", ascending=True)
 
-segment_df = raw_df.groupby("Partner Type", as_index=False)["Active Learners"].sum().rename(columns={"Active Learners": "Learners"})
+segment_df = raw_df.groupby("Partner Type", as_index=False)["Active Learners"].sum().rename(
+    columns={"Active Learners": "Learners"}
+)
 
 pipeline_df = pd.DataFrame(
     {
@@ -312,69 +353,99 @@ annual_goal = 80
 current_goal = int(round(monthly["Engagement Rate (%)"].iloc[-1]))
 program_launch = int(round(min(100, raw_df["Courses Launched"].sum() / 90 * 100)))
 
-regional = raw_df[raw_df["Month_dt"] == raw_df["Month_dt"].max()].groupby("Region", as_index=False).agg({
-    "Engagement Rate (%)": "mean",
-    "Completion Rate (%)": "mean",
-    "Certification Rate (%)": "mean",
-    "CSAT (1-5)": "mean",
-})
+regional = raw_df[raw_df["Month_dt"] == raw_df["Month_dt"].max()].groupby("Region", as_index=False).agg(
+    {
+        "Engagement Rate (%)": "mean",
+        "Completion Rate (%)": "mean",
+        "Certification Rate (%)": "mean",
+        "CSAT (1-5)": "mean",
+    }
+)
 status_df = []
 for _, row in regional.iterrows():
     status = region_status(float(row["Completion Rate (%)"]), "completion")
-    progress = int(round((row["Engagement Rate (%)"] * 0.4) + (row["Completion Rate (%)"] * 0.35) + (row["Certification Rate (%)"] * 0.25)))
-    status_df.append({
-        "Initiative": f"{row['Region']} Regional Rollout",
-        "Owner": "Enablement Ops" if row["Region"] == "AMER" else ("Regional PMO" if row["Region"] == "EMEA" else "Field Enablement"),
-        "Status": status,
-        "Progress": progress,
-    })
+    progress = int(
+        round(
+            (row["Engagement Rate (%)"] * 0.4)
+            + (row["Completion Rate (%)"] * 0.35)
+            + (row["Certification Rate (%)"] * 0.25)
+        )
+    )
+    status_df.append(
+        {
+            "Initiative": f"{row['Region']} Regional Rollout",
+            "Owner": "Enablement Ops"
+            if row["Region"] == "AMER"
+            else ("Regional PMO" if row["Region"] == "EMEA" else "Field Enablement"),
+            "Status": status,
+            "Progress": progress,
+        }
+    )
 status_df = pd.DataFrame(status_df)
-status_df = pd.concat([
-    status_df,
-    pd.DataFrame([
-        {"Initiative": "Assessment Standardization", "Owner": "Instructional Design", "Status": "On Track", "Progress": 78},
-        {"Initiative": "Survey Process Adoption", "Owner": "Operations", "Status": "Watch", "Progress": 67},
-    ])
-], ignore_index=True)
+status_df = pd.concat(
+    [
+        status_df,
+        pd.DataFrame(
+            [
+                {
+                    "Initiative": "Assessment Standardization",
+                    "Owner": "Instructional Design",
+                    "Status": "On Track",
+                    "Progress": 78,
+                },
+                {
+                    "Initiative": "Survey Process Adoption",
+                    "Owner": "Operations",
+                    "Status": "Watch",
+                    "Progress": 67,
+                },
+            ]
+        ),
+    ],
+    ignore_index=True,
+)
 
 insights = [
     (
         "Mid-year momentum is real",
-        "Engagement and completion climbed steadily from Q1 through Q3, showing that the program moved beyond launch friction into sustained adoption."
+        "Engagement and completion climbed steadily from Q1 through Q3, showing that the program moved beyond launch friction into sustained adoption.",
     ),
     (
         "AMER leads, while APAC closed ground",
-        "AMER established the strongest early performance, but APAC accelerated meaningfully in the second half, narrowing the gap by year end."
+        "AMER established the strongest early performance, but APAC accelerated meaningfully in the second half, narrowing the gap by year end.",
     ),
     (
         "August exposed a rollout strain point",
-        "A visible August dip in completion and CSAT suggests temporary delivery friction, likely tied to regional launch readiness or content load."
+        "A visible August dip in completion and CSAT suggests temporary delivery friction, likely tied to regional launch readiness or content load.",
     ),
 ]
 
 risks = [
     (
         "EMEA completion remains softer",
-        "EMEA improved through the year but still trails AMER on completion, indicating a need for tighter localization and reinforcement."
+        "EMEA improved through the year but still trails AMER on completion, indicating a need for tighter localization and reinforcement.",
     ),
     (
         "Certification conversion lags engagement",
-        "Partners are entering learning paths at healthy rates, but certification still converts more slowly than completions."
+        "Partners are entering learning paths at healthy rates, but certification still converts more slowly than completions.",
     ),
 ]
 
 actions = [
     (
         "Reinforce advanced learning paths",
-        "Add milestone nudges and scenario-based practice to help late-stage learners convert from completion into certification."
+        "Add milestone nudges and scenario-based practice to help late-stage learners convert from completion into certification.",
     ),
     (
         "Stabilize regional launch governance",
-        "Tighten intake quality and readiness reviews before high-visibility regional pushes to reduce the risk of repeat dips."
+        "Tighten intake quality and readiness reviews before high-visibility regional pushes to reduce the risk of repeat dips.",
     ),
 ]
 
-one_line_story = "After a slower Q1 launch, global partner engagement and certification momentum strengthened through Q3, with AMER leading early and APAC gaining late before the program stabilized in Q4."
+one_line_story = (
+    "After a slower Q1 launch, global partner engagement and certification momentum strengthened through Q3, "
+    "with AMER leading early and APAC gaining late before the program stabilized in Q4."
+)
 
 # ---------- Header ----------
 st.markdown(
@@ -402,14 +473,18 @@ for col, (label, meta) in zip(kpi_cols, kpis.items()):
         steps = 18
         final_value = meta["value"]
         for i in range(1, steps + 1):
-            current = round(final_value * i / steps, 2) if isinstance(final_value, float) else int(round(final_value * i / steps))
+            current = (
+                round(final_value * i / steps, 2)
+                if isinstance(final_value, float)
+                else int(round(final_value * i / steps))
+            )
             display_val = f"{current:.2f}" if isinstance(final_value, float) else f"{current}"
             placeholder.markdown(
                 f"""
                 <div class="card">
                     <div class="kpi-label">{label}</div>
                     <div class="kpi-value">{display_val}{meta['suffix']}</div>
-                    <div class="kpi-delta" style="color:#2f6fed;">{meta['delta']}</div>
+                    <div class="kpi-delta" style="color:#475569;">{meta['delta']}</div>
                     {pill_html(meta['status'], meta['tone'])}
                 </div>
                 """,
@@ -425,8 +500,16 @@ left, right = st.columns([1.45, 1], gap="large")
 with left:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Monthly Performance Trend</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-note">Engagement, completion, and certification rates across the 2025 program year.</div>', unsafe_allow_html=True)
-    long_trend = monthly.melt(id_vars="Month_dt", value_vars=["Engagement Rate (%)", "Completion Rate (%)", "Certification Rate (%)"], var_name="Metric", value_name="Rate")
+    st.markdown(
+        '<div class="section-note">Engagement, completion, and certification rates across the 2025 program year.</div>',
+        unsafe_allow_html=True,
+    )
+    long_trend = monthly.melt(
+        id_vars="Month_dt",
+        value_vars=["Engagement Rate (%)", "Completion Rate (%)", "Certification Rate (%)"],
+        var_name="Metric",
+        value_name="Rate",
+    )
     fig_line = px.line(
         long_trend,
         x="Month_dt",
@@ -439,22 +522,39 @@ with left:
             "Certification Rate (%)": "#9bb9ff",
         },
     )
-    fig_line.update_traces(line=dict(width=3), marker=dict(size=8))
-    fig_line.update_yaxes(range=[20, 90], gridcolor="#e9eef6", ticksuffix="%")
-    fig_line.update_xaxes(gridcolor="#f1f4f9", tickformat="%b")
+    fig_line.update_traces(
+        line=dict(width=3),
+        marker=dict(size=7, line=dict(width=1.5, color="#FFFFFF")),
+    )
+    fig_line.update_yaxes(
+        range=[20, 90],
+        ticksuffix="%",
+        tickmode="linear",
+        dtick=10,
+    )
+    fig_line.update_xaxes(tickformat="%b", ticklabelmode="period")
     st.plotly_chart(chart_layout(fig_line), use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
 with right:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Completion by Curriculum</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-note">Representative curriculum view for leadership discussion.</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-note">Representative curriculum view for leadership discussion.</div>',
+        unsafe_allow_html=True,
+    )
     fig_bar = px.bar(curriculum_df, x="Completion", y="Curriculum", orientation="h", text="Completion")
-    fig_bar.update_traces(marker_color="#2f6fed", texttemplate="%{text}%", textposition="outside")
-    fig_bar.update_xaxes(range=[0, 100], gridcolor="#e9eef6", ticksuffix="%")
-    fig_bar.update_yaxes(gridcolor="#ffffff")
+    fig_bar.update_traces(
+        marker_color="#2f6fed",
+        texttemplate="%{text}%",
+        textposition="outside",
+        cliponaxis=False,
+        hovertemplate="%{y}: %{x}%<extra></extra>",
+    )
+    fig_bar.update_xaxes(range=[0, 100], ticksuffix="%", tickmode="linear", dtick=20)
+    fig_bar.update_yaxes(categoryorder="total ascending")
     st.plotly_chart(chart_layout(fig_bar), use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("<div style='height: 0.55rem;'></div>", unsafe_allow_html=True)
 
@@ -464,7 +564,10 @@ col1, col2, col3 = st.columns([0.95, 1.05, 1.0], gap="large")
 with col1:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Partner Segment Distribution</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-note">Current learner mix across the partner audience.</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-note">Current learner mix across the partner audience.</div>',
+        unsafe_allow_html=True,
+    )
     fig_donut = px.pie(
         segment_df,
         values="Learners",
@@ -472,37 +575,69 @@ with col1:
         hole=0.66,
         color_discrete_sequence=["#2f6fed", "#5b8eff", "#9bb9ff"],
     )
-    fig_donut.update_traces(textinfo="percent+label")
+    fig_donut.update_traces(
+        textinfo="percent",
+        textfont=dict(size=12, color="#18212f"),
+        marker=dict(line=dict(color="#FFFFFF", width=2)),
+        hovertemplate="%{label}: %{value:,} learners (%{percent})<extra></extra>",
+    )
+    fig_donut.update_layout(showlegend=True)
     st.plotly_chart(chart_layout(fig_donut), use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
 with col2:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Delivery Pipeline by Stage</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-note">Current work distribution across the development lifecycle.</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-note">Current work distribution across the development lifecycle.</div>',
+        unsafe_allow_html=True,
+    )
     fig_area = go.Figure()
-    fig_area.add_trace(go.Scatter(x=pipeline_df["Stage"], y=pipeline_df["Projects"], fill="tozeroy", mode="lines+markers", line=dict(color="#2f6fed", width=3), marker=dict(size=8), name="Projects"))
-    fig_area.update_yaxes(gridcolor="#e9eef6", rangemode="tozero")
-    fig_area.update_xaxes(gridcolor="#f1f4f9")
+    fig_area.add_trace(
+        go.Scatter(
+            x=pipeline_df["Stage"],
+            y=pipeline_df["Projects"],
+            fill="tozeroy",
+            mode="lines+markers",
+            line=dict(color="#2f6fed", width=3),
+            marker=dict(size=7, color="#2f6fed", line=dict(color="#FFFFFF", width=1.5)),
+            fillcolor="rgba(47, 111, 237, 0.12)",
+            name="Projects",
+            hovertemplate="%{x}: %{y} projects<extra></extra>",
+        )
+    )
+    fig_area.update_yaxes(rangemode="tozero", dtick=2)
     st.plotly_chart(chart_layout(fig_area), use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
 with col3:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Goal Progress</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-note">Annual engagement goal and overall launch completion.</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-note">Annual engagement goal and overall launch completion.</div>',
+        unsafe_allow_html=True,
+    )
     st.markdown('<div class="mini-label">Annual Partner Engagement Goal</div>', unsafe_allow_html=True)
     st.progress(current_goal / annual_goal)
-    st.markdown(f"<div class='mini-sub'>{current_goal}% achieved against an {annual_goal}% year-end target.</div>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='mini-sub'>{current_goal}% achieved against an {annual_goal}% year-end target.</div>",
+        unsafe_allow_html=True,
+    )
     st.markdown("<div style='height:0.85rem;'></div>", unsafe_allow_html=True)
     st.markdown('<div class="mini-label">Program Launch Completion</div>', unsafe_allow_html=True)
     st.progress(program_launch / 100)
-    st.markdown(f"<div class='mini-sub'>{program_launch}% of planned learning assets are launched or launch-ready.</div>", unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='mini-sub'>{program_launch}% of planned learning assets are launched or launch-ready.</div>",
+        unsafe_allow_html=True,
+    )
     st.markdown("<div style='height:1rem;'></div>", unsafe_allow_html=True)
     st.markdown(pill_html("Leadership View", "blue"), unsafe_allow_html=True)
     st.markdown("<div style='height:0.6rem;'></div>", unsafe_allow_html=True)
-    st.markdown("<div class='mini-sub'>The data reflects a healthy year-over-year build, with a temporary August disruption that leadership should treat as a governance signal rather than a structural performance problem.</div>", unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown(
+        "<div class='mini-sub'>The data reflects a healthy year-over-year build, with a temporary August disruption that leadership should treat as a governance signal rather than a structural performance problem.</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("<div style='height: 0.55rem;'></div>", unsafe_allow_html=True)
 
@@ -512,9 +647,13 @@ left_bottom, middle_bottom, right_bottom = st.columns([1.1, 0.9, 1.0], gap="larg
 with left_bottom:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Initiative Status</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-note">Current delivery health for strategic enablement workstreams.</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-note">Current delivery health for strategic enablement workstreams.</div>',
+        unsafe_allow_html=True,
+    )
     for _, row in status_df.iterrows():
-        st.markdown(f"""
+        st.markdown(
+            f"""
             <div class="mini-row">
                 <div>
                     <div class="mini-label">{row['Initiative']}</div>
@@ -522,44 +661,60 @@ with left_bottom:
                 </div>
                 <div>{pill_html(row['Status'], status_tone(row['Status']))}</div>
             </div>
-            """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+            """,
+            unsafe_allow_html=True,
+        )
+    st.markdown("</div>", unsafe_allow_html=True)
 
 with middle_bottom:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Executive Insights</div>', unsafe_allow_html=True)
     for title, body in insights:
-        st.markdown(f"""
+        st.markdown(
+            f"""
             <div class="insight">
                 <div class="insight-title">{title}</div>
                 <div class="insight-body">{body}</div>
             </div>
-            """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+            """,
+            unsafe_allow_html=True,
+        )
+    st.markdown("</div>", unsafe_allow_html=True)
 
 with right_bottom:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Risks & Recommended Actions</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-note">Condensed action layer for leadership review.</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-note">Condensed action layer for leadership review.</div>',
+        unsafe_allow_html=True,
+    )
     st.markdown(pill_html("Risks", "amber"), unsafe_allow_html=True)
     for title, body in risks:
-        st.markdown(f"""
+        st.markdown(
+            f"""
             <div class="insight">
                 <div class="insight-title">{title}</div>
                 <div class="insight-body">{body}</div>
             </div>
-            """, unsafe_allow_html=True)
+            """,
+            unsafe_allow_html=True,
+        )
     st.markdown("<div style='height:0.7rem;'></div>", unsafe_allow_html=True)
     st.markdown(pill_html("Recommended Actions", "blue"), unsafe_allow_html=True)
     for title, body in actions:
-        st.markdown(f"""
+        st.markdown(
+            f"""
             <div class="insight">
                 <div class="insight-title">{title}</div>
                 <div class="insight-body">{body}</div>
             </div>
-            """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+            """,
+            unsafe_allow_html=True,
+        )
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------- Footer ----------
 st.markdown("<div style='height: 0.55rem;'></div>", unsafe_allow_html=True)
-st.caption("Synthetic dataset wired into the dashboard from partner_enablement_dataset.csv. Replace the CSV later if you want to simulate a different business story.")
+st.caption(
+    "Synthetic dataset wired into the dashboard from partner_enablement_dataset.csv. Replace the CSV later if you want to simulate a different business story."
+)
