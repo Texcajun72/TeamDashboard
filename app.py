@@ -31,13 +31,13 @@ st.markdown(
         :root {
             --bg: #ffffff;
             --card: #ffffff;
-            --text: #16202d;
+            --text: #142133;
             --muted: #475569;
-            --border: #e5eaf1;
+            --border: #e6ebf2;
             --blue: #2f6fed;
-            --teal: #127c72;
-            --gold: #b7791f;
-            --slate: #64748b;
+            --teal: #17867d;
+            --gold: #c08a1a;
+            --slate: #6b7b8f;
             --green: #1f9d61;
             --amber: #c98a14;
             --red: #cf3f3f;
@@ -48,88 +48,88 @@ st.markdown(
         }
 
         .block-container {
-            padding-top: 2rem;
-            padding-bottom: 2.7rem;
-            max-width: 1520px;
+            padding-top: 2.45rem;
+            padding-bottom: 3rem;
+            max-width: 1540px;
         }
 
         .hero {
-            background: #ffffff;
+            background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 1.75rem 1.8rem 1.45rem 1.8rem;
+            border-radius: 24px;
+            padding: 1.9rem 2rem 1.55rem 2rem;
             box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.25rem;
         }
 
         .hero-title {
             color: var(--text);
-            font-size: 2.15rem;
-            font-weight: 700;
-            margin-bottom: 0.28rem;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
+            font-size: 2.3rem;
+            font-weight: 750;
+            margin-bottom: 0.32rem;
+            letter-spacing: -0.035em;
+            line-height: 1.08;
         }
 
         .hero-subtitle {
             color: var(--muted);
-            font-size: 1.08rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            max-width: 1020px;
+            font-size: 1.12rem;
+            line-height: 1.62;
+            margin-bottom: 1.05rem;
+            max-width: 1080px;
         }
 
         .hero-meta {
             display: inline-block;
             color: var(--muted);
-            font-size: 0.94rem;
+            font-size: 0.98rem;
             background: #ffffff;
             border: 1px solid var(--border);
             border-radius: 999px;
-            padding: 0.42rem 0.72rem;
-            margin-right: 0.5rem;
+            padding: 0.46rem 0.78rem;
+            margin-right: 0.52rem;
             margin-bottom: 0.35rem;
         }
 
         .card {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.3rem 1.35rem 1.25rem 1.35rem;
+            border-radius: 21px;
+            padding: 1.45rem 1.45rem 1.35rem 1.45rem;
             box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
             height: 100%;
         }
 
         .kpi-label {
             color: var(--muted);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.46rem;
+            font-size: 1.06rem;
+            font-weight: 650;
+            margin-bottom: 0.55rem;
         }
 
         .kpi-value {
             color: var(--text);
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.04em;
+            font-size: 2.6rem;
+            font-weight: 760;
+            letter-spacing: -0.045em;
             line-height: 1;
-            margin-bottom: 0.48rem;
+            margin-bottom: 0.55rem;
         }
 
         .kpi-delta {
             color: var(--muted);
-            font-size: 0.98rem;
-            font-weight: 600;
-            margin-bottom: 0.7rem;
-            line-height: 1.45;
+            font-size: 1rem;
+            font-weight: 620;
+            margin-bottom: 0.82rem;
+            line-height: 1.48;
         }
 
         .pill {
             display: inline-block;
-            padding: 0.28rem 0.62rem;
+            padding: 0.30rem 0.68rem;
             border-radius: 999px;
-            font-size: 0.82rem;
-            font-weight: 700;
+            font-size: 0.84rem;
+            font-weight: 720;
             letter-spacing: 0.01em;
             border: 1px solid transparent;
         }
@@ -141,19 +141,19 @@ st.markdown(
 
         .section-title {
             color: var(--text);
-            font-size: 1.16rem;
-            font-weight: 700;
-            margin-bottom: 0.52rem;
+            font-size: 1.22rem;
+            font-weight: 740;
+            margin-bottom: 0.55rem;
             letter-spacing: -0.02em;
             line-height: 1.25;
         }
 
         .section-note {
             color: var(--muted);
-            font-size: 0.98rem;
-            line-height: 1.58;
+            font-size: 1rem;
+            line-height: 1.62;
             margin-top: 0;
-            margin-bottom: 1rem;
+            margin-bottom: 1.05rem;
         }
 
         .mini-row {
@@ -161,8 +161,8 @@ st.markdown(
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
-            padding: 0.78rem 0;
-            border-bottom: 1px solid #eef2f7;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #edf2f7;
         }
 
         .mini-row:last-child {
@@ -171,46 +171,48 @@ st.markdown(
 
         .mini-label {
             color: var(--text);
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.02rem;
+            font-weight: 650;
             line-height: 1.42;
         }
 
         .mini-sub {
             color: var(--muted);
-            font-size: 0.93rem;
-            line-height: 1.56;
+            font-size: 0.96rem;
+            line-height: 1.62;
             margin-top: 0.18rem;
         }
 
         .insight {
-            padding: 0.86rem 0 0.72rem 0;
-            border-bottom: 1px solid #eef2f7;
+            padding: 0.92rem 0 0.78rem 0;
+            border-bottom: 1px solid #edf2f7;
         }
 
-        .insight:last-child { border-bottom: none; }
+        .insight:last-child {
+            border-bottom: none;
+        }
 
         .insight-title {
             color: var(--text);
-            font-weight: 700;
-            font-size: 1rem;
+            font-weight: 720;
+            font-size: 1.02rem;
             margin-bottom: 0.28rem;
-            line-height: 1.42;
+            line-height: 1.44;
         }
 
         .insight-body {
             color: var(--muted);
-            font-size: 0.95rem;
-            line-height: 1.62;
+            font-size: 0.97rem;
+            line-height: 1.66;
         }
 
         div[data-testid="stProgressBar"] > div > div > div > div {
-            background: linear-gradient(90deg, #2f6fed 0%, #127c72 100%);
+            background: linear-gradient(90deg, #2f6fed 0%, #17867d 100%);
         }
 
         div[data-testid="stExpander"] details summary p {
-            font-size: 0.98rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 650;
         }
     </style>
     """,
@@ -237,49 +239,54 @@ def status_tone(status: str) -> str:
     }.get(status, "blue")
 
 
-def chart_layout(fig: go.Figure) -> go.Figure:
+def base_chart_layout(fig: go.Figure) -> go.Figure:
     fig.update_layout(
+        title=None,
+        title_text=None,
         paper_bgcolor="#FFFFFF",
         plot_bgcolor="#FFFFFF",
-        margin=dict(l=22, r=22, t=58, b=22),
-        font=dict(color="#16202d", family="Arial", size=14),
-        title=dict(font=dict(size=18, color="#111827"), x=0, xanchor="left"),
+        margin=dict(l=18, r=18, t=28, b=14),
+        font=dict(color="#142133", family="Arial", size=14),
         hoverlabel=dict(font_size=13),
+        showlegend=False,
     )
     fig.update_xaxes(
+        title=None,
         showgrid=True,
-        gridcolor="#eef2f7",
+        gridcolor="#edf2f7",
         gridwidth=1,
         zeroline=False,
         showline=False,
         tickfont=dict(size=12, color="#334155"),
-        title_font=dict(size=13, color="#16202d"),
+        title_font=dict(size=13, color="#142133"),
     )
     fig.update_yaxes(
+        title=None,
         showgrid=True,
-        gridcolor="#eef2f7",
+        gridcolor="#edf2f7",
         gridwidth=1,
         zeroline=False,
         showline=False,
         tickfont=dict(size=12, color="#334155"),
-        title_font=dict(size=13, color="#16202d"),
+        title_font=dict(size=13, color="#142133"),
     )
     return fig
 
 
-def chart_layout_with_legend(fig: go.Figure) -> go.Figure:
-    fig = chart_layout(fig)
+def chart_with_legend(fig: go.Figure) -> go.Figure:
+    fig = base_chart_layout(fig)
     fig.update_layout(
+        showlegend=True,
         legend=dict(
+            title_text="",
             orientation="h",
             yanchor="bottom",
-            y=1.1,
+            y=1.05,
             xanchor="left",
             x=0,
             font=dict(size=12, color="#334155"),
-            title_text="",
             itemsizing="constant",
-        )
+        ),
     )
     return fig
 
@@ -315,12 +322,13 @@ curriculum_df = pd.DataFrame(
         "Curriculum": [
             "IBX Essentials",
             "Interconnection Overview",
-            "Interconnection 1",
-            "Interconnection 2",
             "Power Concepts",
+            "Interconnection 1",
             "Data Center Design",
+            "Interconnection 2",
         ],
-        "Completion": [84, 79, 73, 66, 77, 71],
+        "Completion": [84, 79, 77, 73, 71, 66],
+        "BarColor": ["#6f7f92", "#7d8ea0", "#8ba0ab", "#97aeb0", "#a6beb8", "#17867d"],
     }
 ).sort_values("Completion", ascending=True)
 
@@ -507,75 +515,77 @@ for col, (label, meta) in zip(kpi_cols, kpis.items()):
                 """,
                 unsafe_allow_html=True,
             )
-            time.sleep(0.012)
+            time.sleep(0.01)
 
-st.markdown("<div style='height: 0.8rem;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 0.95rem;'></div>", unsafe_allow_html=True)
 
 left, right = st.columns([1.45, 1], gap="large")
 
 with left:
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Monthly Performance Trend</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Performance Trend (Monthly)</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="section-note">Engagement, completion, and certification rates across the 2025 program year.</div>',
         unsafe_allow_html=True,
     )
-    long_trend = monthly.melt(
+    trend_df = monthly.melt(
         id_vars="Month_dt",
         value_vars=["Engagement Rate (%)", "Completion Rate (%)", "Certification Rate (%)"],
         var_name="Metric",
         value_name="Rate",
     )
     fig_line = px.line(
-        long_trend,
+        trend_df,
         x="Month_dt",
         y="Rate",
         color="Metric",
         markers=True,
         color_discrete_map={
             "Engagement Rate (%)": "#2f6fed",
-            "Completion Rate (%)": "#127c72",
-            "Certification Rate (%)": "#b7791f",
+            "Completion Rate (%)": "#17867d",
+            "Certification Rate (%)": "#c08a1a",
         },
     )
+    fig_line.update_layout(title=None, title_text=None)
     fig_line.update_traces(
         line=dict(width=3),
         marker=dict(size=8, line=dict(width=1.8, color="#FFFFFF")),
+        hovertemplate="%{x|%b %Y}<br>%{fullData.name}: %{y:.0f}%<extra></extra>",
     )
     fig_line.update_yaxes(range=[20, 90], ticksuffix="%", tickmode="linear", dtick=10)
     fig_line.update_xaxes(tickformat="%b", ticklabelmode="period")
-    st.plotly_chart(chart_layout_with_legend(fig_line), use_container_width=True)
+    st.plotly_chart(chart_with_legend(fig_line), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
 with right:
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Completion by Curriculum</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Curriculum Completion Performance</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="section-note">Representative curriculum view for leadership discussion.</div>',
         unsafe_allow_html=True,
     )
-    fig_bar = px.bar(
-        curriculum_df,
-        x="Completion",
-        y="Curriculum",
-        orientation="h",
-        text="Completion",
-        color="Completion",
-        color_continuous_scale=["#d5dde8", "#7aa99d", "#127c72"],
+    fig_bar = go.Figure()
+    fig_bar.add_trace(
+        go.Bar(
+            x=curriculum_df["Completion"],
+            y=curriculum_df["Curriculum"],
+            orientation="h",
+            text=[f"{v}%" for v in curriculum_df["Completion"]],
+            textposition="outside",
+            cliponaxis=False,
+            marker=dict(color=curriculum_df["BarColor"]),
+            hovertemplate="%{y}: %{x}%<extra></extra>",
+            showlegend=False,
+            name="",
+        )
     )
-    fig_bar.update_traces(
-        texttemplate="%{text}%",
-        textposition="outside",
-        cliponaxis=False,
-        hovertemplate="%{y}: %{x}%<extra></extra>",
-    )
-    fig_bar.update_layout(coloraxis_showscale=False, showlegend=False)
+    fig_bar.update_layout(title=None, title_text=None)
     fig_bar.update_xaxes(range=[0, 100], ticksuffix="%", tickmode="linear", dtick=20)
     fig_bar.update_yaxes(categoryorder="total ascending")
-    st.plotly_chart(chart_layout(fig_bar), use_container_width=True)
+    st.plotly_chart(base_chart_layout(fig_bar), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
-st.markdown("<div style='height: 0.8rem;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 0.95rem;'></div>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns([0.95, 1.05, 1.0], gap="large")
 
@@ -594,21 +604,22 @@ with col1:
         color="Partner Type",
         color_discrete_map={
             "Reseller": "#2f6fed",
-            "Distributor": "#127c72",
-            "Strategic": "#b7791f",
+            "Distributor": "#17867d",
+            "Strategic": "#c08a1a",
         },
     )
+    fig_donut.update_layout(title=None, title_text=None)
     fig_donut.update_traces(
         textinfo="percent",
-        textfont=dict(size=13, color="#16202d"),
+        textfont=dict(size=13, color="#142133"),
         marker=dict(line=dict(color="#FFFFFF", width=2.2)),
         hovertemplate="%{label}: %{value:,} learners (%{percent})<extra></extra>",
         sort=False,
         showlegend=False,
+        name="",
     )
     fig_donut.update_layout(
-        showlegend=False,
-        margin=dict(l=10, r=10, t=20, b=10),
+        margin=dict(l=10, r=10, t=12, b=10),
         annotations=[
             dict(
                 text="Partner<br>Mix",
@@ -619,7 +630,7 @@ with col1:
             )
         ],
     )
-    st.plotly_chart(chart_layout(fig_donut), use_container_width=True)
+    st.plotly_chart(base_chart_layout(fig_donut), use_container_width=True)
     st.markdown(
         "<div class='mini-sub'>Reseller, Distributor, and Strategic partner segments are balanced enough to support broad rollout coverage without overconcentration.</div>",
         unsafe_allow_html=True,
@@ -640,16 +651,17 @@ with col2:
             y=pipeline_df["Projects"],
             fill="tozeroy",
             mode="lines+markers",
-            line=dict(color="#127c72", width=3),
-            marker=dict(size=8, color="#127c72", line=dict(color="#FFFFFF", width=1.8)),
-            fillcolor="rgba(18, 124, 114, 0.14)",
+            line=dict(color="#17867d", width=3),
+            marker=dict(size=8, color="#17867d", line=dict(color="#FFFFFF", width=1.8)),
+            fillcolor="rgba(23, 134, 125, 0.14)",
             hovertemplate="%{x}: %{y} projects<extra></extra>",
             showlegend=False,
+            name="",
         )
     )
-    fig_area.update_layout(showlegend=False)
+    fig_area.update_layout(title=None, title_text=None)
     fig_area.update_yaxes(rangemode="tozero", dtick=2)
-    st.plotly_chart(chart_layout(fig_area), use_container_width=True)
+    st.plotly_chart(base_chart_layout(fig_area), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
 with col3:
@@ -681,7 +693,7 @@ with col3:
     )
     st.markdown("</div>", unsafe_allow_html=True)
 
-st.markdown("<div style='height: 0.8rem;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 0.95rem;'></div>", unsafe_allow_html=True)
 
 left_bottom, middle_bottom, right_bottom = st.columns([1.1, 0.9, 1.0], gap="large")
 
@@ -740,7 +752,7 @@ with right_bottom:
             """,
             unsafe_allow_html=True,
         )
-    st.markdown("<div style='height:0.8rem;'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:0.85rem;'></div>", unsafe_allow_html=True)
     st.markdown(pill_html("Recommended Actions", "blue"), unsafe_allow_html=True)
     for title, body in actions:
         st.markdown(
@@ -754,7 +766,7 @@ with right_bottom:
         )
     st.markdown("</div>", unsafe_allow_html=True)
 
-st.markdown("<div style='height: 0.8rem;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 0.85rem;'></div>", unsafe_allow_html=True)
 st.caption(
     "Synthetic dataset wired into the dashboard from partner_enablement_dataset.csv. Replace the CSV later if you want to simulate a different business story."
 )
