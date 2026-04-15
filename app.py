@@ -13,8 +13,39 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
-
 # --- Force clean white corporate background ---
+st.markdown("""
+    <style>
+        /* Main app background */
+        .stApp {
+            background-color: #FFFFFF;
+        }
+
+        /* Remove gray padding blocks */
+        section.main > div {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        /* Optional: cleaner font color */
+        body {
+            color: #1f2937;
+        }
+    </style>
+""", unsafe_allow_html=True)
+# --- Force clean white corporate background ---
+st.markdown("""
+    <style>
+        .card {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 st.markdown("""
     <style>
         /* Main app background */
@@ -549,7 +580,10 @@ with right_bottom:
             unsafe_allow_html=True,
         )
     st.markdown('</div>', unsafe_allow_html=True)
-
+with st.container():
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.metric("Engagement Rate", "78%", "+5%")
+    st.markdown('</div>', unsafe_allow_html=True)
 # ---------- Footer ----------
 st.markdown("<div style='height: 0.55rem;'></div>", unsafe_allow_html=True)
 st.caption("Demo dashboard with realistic sample data. Replace the dataframes in app.py with your own metrics or live data source when ready.")
