@@ -608,7 +608,10 @@ with col1:
             "Strategic": "#c08a1a",
         },
     )
-    fig_donut.update_layout(title=None, title_text=None)
+    # FIX: explicitly set showlegend=False at the layout level here,
+    # before update_traces, to prevent Plotly from registering an
+    # "undefined" legend entry for the pie/donut chart.
+    fig_donut.update_layout(title=None, title_text=None, showlegend=False)
     fig_donut.update_traces(
         textinfo="percent",
         textfont=dict(size=13, color="#142133"),
