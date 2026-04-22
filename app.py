@@ -241,8 +241,7 @@ def status_tone(status: str) -> str:
 
 def base_chart_layout(fig: go.Figure) -> go.Figure:
     fig.update_layout(
-        title=None,
-        title_text=None,
+        title_text="",
         paper_bgcolor="#FFFFFF",
         plot_bgcolor="#FFFFFF",
         margin=dict(l=18, r=18, t=28, b=14),
@@ -251,7 +250,7 @@ def base_chart_layout(fig: go.Figure) -> go.Figure:
         showlegend=False,
     )
     fig.update_xaxes(
-        title=None,
+        title_text="",
         showgrid=True,
         gridcolor="#edf2f7",
         gridwidth=1,
@@ -261,7 +260,7 @@ def base_chart_layout(fig: go.Figure) -> go.Figure:
         title_font=dict(size=13, color="#142133"),
     )
     fig.update_yaxes(
-        title=None,
+        title_text="",
         showgrid=True,
         gridcolor="#edf2f7",
         gridwidth=1,
@@ -546,7 +545,7 @@ with left:
             "Certification Rate (%)": "#c08a1a",
         },
     )
-    fig_line.update_layout(title=None, title_text=None)
+    fig_line.update_layout(title_text="")
     fig_line.update_traces(
         line=dict(width=3),
         marker=dict(size=8, line=dict(width=1.8, color="#FFFFFF")),
@@ -579,7 +578,7 @@ with right:
             name="",
         )
     )
-    fig_bar.update_layout(title=None, title_text=None)
+    fig_bar.update_layout(title_text="")
     fig_bar.update_xaxes(range=[0, 100], ticksuffix="%", tickmode="linear", dtick=20)
     fig_bar.update_yaxes(categoryorder="total ascending")
     st.plotly_chart(base_chart_layout(fig_bar), use_container_width=True)
@@ -611,7 +610,7 @@ with col1:
     # FIX: explicitly set showlegend=False at the layout level here,
     # before update_traces, to prevent Plotly from registering an
     # "undefined" legend entry for the pie/donut chart.
-    fig_donut.update_layout(title=None, title_text=None, showlegend=False)
+    fig_donut.update_layout(title_text="", showlegend=False)
     fig_donut.update_traces(
         textinfo="percent",
         textfont=dict(size=13, color="#142133"),
@@ -662,7 +661,7 @@ with col2:
             name="",
         )
     )
-    fig_area.update_layout(title=None, title_text=None)
+    fig_area.update_layout(title_text="")
     fig_area.update_yaxes(rangemode="tozero", dtick=2)
     st.plotly_chart(base_chart_layout(fig_area), use_container_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
