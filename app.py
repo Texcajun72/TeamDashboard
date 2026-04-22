@@ -770,5 +770,5 @@ with right_bottom:
 
 st.markdown("<div style='height: 0.85rem;'></div>", unsafe_allow_html=True)
 st.caption(
-    "Synthetic dataset wired into the dashboard from partner_enablement_dataset.csv. Replace the CSV later if you want to simulate a different business story."
+    "Synthetic dataset wired into the dashboard from partner_enablement_dataset.csv. Rev 5.3."
 )
